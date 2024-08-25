@@ -11,7 +11,7 @@ import SwiftUI
 struct TZInter_SnapApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProductsView()
         }
     }
 }

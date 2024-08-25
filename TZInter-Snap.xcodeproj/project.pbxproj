@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		48563C2C2C7B1BC3001264FD /* TZInter_SnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C2B2C7B1BC3001264FD /* TZInter_SnapApp.swift */; };
-		48563C2E2C7B1BC3001264FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C2D2C7B1BC3001264FD /* ContentView.swift */; };
+		48563C2E2C7B1BC3001264FD /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C2D2C7B1BC3001264FD /* ProductsView.swift */; };
 		48563C302C7B1BC6001264FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48563C2F2C7B1BC6001264FD /* Assets.xcassets */; };
 		48563C332C7B1BC6001264FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48563C322C7B1BC6001264FD /* Preview Assets.xcassets */; };
+		48563C3D2C7B1C0A001264FD /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C3C2C7B1C0A001264FD /* Product.swift */; };
+		48563C3F2C7B1CE4001264FD /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C3E2C7B1CE4001264FD /* GridView.swift */; };
+		48563C412C7B1CFE001264FD /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C402C7B1CFE001264FD /* ListView.swift */; };
+		48563C432C7B1D29001264FD /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48563C422C7B1D29001264FD /* ProductViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		48563C282C7B1BC3001264FD /* TZInter-Snap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TZInter-Snap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48563C2B2C7B1BC3001264FD /* TZInter_SnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TZInter_SnapApp.swift; sourceTree = "<group>"; };
-		48563C2D2C7B1BC3001264FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		48563C2D2C7B1BC3001264FD /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		48563C2F2C7B1BC6001264FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48563C322C7B1BC6001264FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48563C3C2C7B1C0A001264FD /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		48563C3E2C7B1CE4001264FD /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		48563C402C7B1CFE001264FD /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		48563C422C7B1D29001264FD /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				48563C2B2C7B1BC3001264FD /* TZInter_SnapApp.swift */,
-				48563C2D2C7B1BC3001264FD /* ContentView.swift */,
+				48563C392C7B1BD6001264FD /* MainView */,
 				48563C2F2C7B1BC6001264FD /* Assets.xcassets */,
 				48563C312C7B1BC6001264FD /* Preview Content */,
 			);
@@ -65,6 +73,34 @@
 				48563C322C7B1BC6001264FD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48563C392C7B1BD6001264FD /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				48563C3C2C7B1C0A001264FD /* Product.swift */,
+				48563C3A2C7B1BE8001264FD /* View */,
+				48563C3B2C7B1BF9001264FD /* ViewModel */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		48563C3A2C7B1BE8001264FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48563C2D2C7B1BC3001264FD /* ProductsView.swift */,
+				48563C3E2C7B1CE4001264FD /* GridView.swift */,
+				48563C402C7B1CFE001264FD /* ListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48563C3B2C7B1BF9001264FD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48563C422C7B1D29001264FD /* ProductViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +173,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48563C2E2C7B1BC3001264FD /* ContentView.swift in Sources */,
+				48563C3D2C7B1C0A001264FD /* Product.swift in Sources */,
+				48563C2E2C7B1BC3001264FD /* ProductsView.swift in Sources */,
+				48563C432C7B1D29001264FD /* ProductViewModel.swift in Sources */,
+				48563C412C7B1CFE001264FD /* ListView.swift in Sources */,
+				48563C3F2C7B1CE4001264FD /* GridView.swift in Sources */,
 				48563C2C2C7B1BC3001264FD /* TZInter_SnapApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TZInter-Snap/Preview Content\"";
-				DEVELOPMENT_TEAM = TUPKULQZ9B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -301,7 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TZInter-Snap/Preview Content\"";
-				DEVELOPMENT_TEAM = TUPKULQZ9B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
