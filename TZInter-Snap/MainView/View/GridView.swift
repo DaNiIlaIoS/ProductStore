@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GridView: View {
-        let product: Product
+    let product: Product
     
     var body: some View {
         GeometryReader(content: { geometry in
@@ -19,29 +19,50 @@ struct GridView: View {
                         .scaledToFit()
                         
                     VStack {
-                        VStack(alignment: .trailing, spacing: 10) {
-                            Button(action: {
-                                //
-                            }, label: {
-                                Image(systemName: "list.bullet.clipboard")
-                            })
+                        HStack(alignment: .top) {
                             
-                            Button(action: {
-                                //
-                            }, label: {
-                                Image(systemName: "heart")
-                            })
+                            if let tagLabel = product.tagLabel {
+                                Text(tagLabel)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 3)
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(.white)
+                                    .background(setColor())
+                                    .clipShape(.rect(cornerRadius: 5))
+                            }
                             
+                            Spacer()
+                            
+                            VStack(alignment: .trailing, spacing: 10) {
+                                Button(action: {
+                                    //
+                                }, label: {
+                                    Image(systemName: "list.bullet.clipboard")
+                                })
+                                
+                                Button(action: {
+                                    //
+                                }, label: {
+                                    Image(systemName: "heart")
+                                })
+                                
+                            }
+                            .padding()
+                            .foregroundStyle(.gray)
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .foregroundStyle(.gray)
                         
                         Spacer()
+                        
                         HStack(alignment: .bottom) {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
                             Text(product.grade)
+                            Spacer()
+                            if product.isOnSale {
+                                Text("25%")
+                                    .font(.system(size: 16, weight: .black))
+                                    .foregroundStyle(.appRed)
+                            }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -77,9 +98,21 @@ struct GridView: View {
                 
             }
             .background(.white)
-//            .shadow(radius: 20)
+            
             .clipShape(.rect(cornerRadius: 20))
         })
-        
+    }
+    
+    func setColor() -> Color {
+        switch product.tagLabel {
+        case "Удар по ценам":
+            return .appPink
+        case "Новинки":
+            return .appPurple
+        case "Цена по карте":
+            return .appLightGreen
+        default:
+            return .white
+        }
     }
 }
