@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct GridView: View {
-    let product: Product
+    @StateObject var viewModel: GridViewModel
+    @State var isAddedToCard: Bool = false
+    @State private var quantity: Double = 0.1
     
     var body: some View {
         GeometryReader(content: { geometry in
             VStack {
                 ZStack {
-                    Image(product.image)
+                    Image(viewModel.product.image)
                         .resizable()
                         .scaledToFit()
-                        
+                    
                     VStack {
                         HStack(alignment: .top) {
                             
-                            if let tagLabel = product.tagLabel {
+                            if let tagLabel = viewModel.product.tagLabel {
                                 Text(tagLabel)
                                     .padding(.horizontal, 10)
                                     .padding(.vertical, 3)
                                     .font(.system(size: 10))
                                     .foregroundStyle(.white)
-                                    .background(setColor())
+                                    .background(viewModel.setColor())
                                     .clipShape(.rect(cornerRadius: 5))
                             }
                             
@@ -56,9 +58,9 @@ struct GridView: View {
                         HStack(alignment: .bottom) {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
-                            Text(product.grade)
+                            Text(viewModel.product.grade)
                             Spacer()
-                            if product.isOnSale {
+                            if viewModel.product.isOnSale {
                                 Text("25%")
                                     .font(.system(size: 16, weight: .black))
                                     .foregroundStyle(.appRed)
@@ -67,52 +69,74 @@ struct GridView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: 200)
+                .frame(maxWidth: .infinity, maxHeight: 145)
+//                .frame(height: 150)
                 
-                VStack(alignment: .leading, spacing: 44) {
-                    Text(product.name)
+                VStack(alignment: .leading) {
+                    Text(viewModel.product.name)
                         .font(.system(size: 12))
                     HStack {
-                        VStack(alignment: .leading) {
-                            Text(String(format: "%.2f", product.discountPrice) + " ₽/кг")
-                                .font(.system(size: 17, weight: .bold))
-                            Text(String(format: "%.1f", product.price))
-                                .font(.system(size: 12))
-                                .foregroundStyle(.gray)
-                                .strikethrough(true, color: .gray)
-                        }
-                        Spacer()
-                        Button(action: {
-                            //
-                        }, label: {
-                            Image(.cartIcon)
-                                .padding(.horizontal, 17)
-                                .padding(.vertical, 10)
+                        if isAddedToCard {
+                            VStack(spacing: 5) {
+                                WeightUnitPicker()
+                                HStack {
+                                    Button(action: {
+                                        isAddedToCard = false
+                                    }, label: {
+                                        Image(systemName: "minus")
+                                    })
+                                    Spacer()
+                                    VStack {
+                                        Text("0.1")
+                                            .font(.system(size: 17))
+                                        Text("~5.92")
+                                            .font(.system(size: 12))
+                                    }
+                                    Spacer()
+                                    Button(action: {
+                                        isAddedToCard = false
+                                    }, label: {
+                                        Image(systemName: "plus")
+                                    })
+                                    
+                                }
+                                .padding(.horizontal, 10)
+                                .foregroundStyle(.white)
                                 .background(.appGreen)
-                                .clipShape(.rect(cornerRadius: 15))
-                        })
+                                .clipShape(.rect(cornerRadius: 40))
+                            }
+                        } else {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(String(format: "%.2f", viewModel.product.discountPrice) + " ₽/кг")
+                                        .font(.system(size: 17, weight: .bold))
+                                    Text(String(format: "%.1f", viewModel.product.price))
+                                        .font(.system(size: 12))
+                                        .foregroundStyle(.gray)
+                                        .strikethrough(true, color: .gray)
+                                }
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    isAddedToCard = true
+                                }, label: {
+                                    Image(.cartIcon)
+                                        .padding(.horizontal, 17)
+                                        .padding(.vertical, 10)
+                                        .background(.appGreen)
+                                        .clipShape(.rect(cornerRadius: 15))
+                                })
+                            }
+                            .padding(.top, 35)
+                        }
                     }
                     
                 }
                 .padding()
-                
             }
             .background(.white)
-            
             .clipShape(.rect(cornerRadius: 20))
         })
-    }
-    
-    func setColor() -> Color {
-        switch product.tagLabel {
-        case "Удар по ценам":
-            return .appPink
-        case "Новинки":
-            return .appPurple
-        case "Цена по карте":
-            return .appLightGreen
-        default:
-            return .white
-        }
     }
 }

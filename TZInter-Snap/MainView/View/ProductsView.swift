@@ -35,16 +35,14 @@ struct ProductsView: View {
                 LazyVGrid(columns: columns, spacing: 8) {
                     ForEach(viewModel.products) { product in
                         if viewModel.isGridView {
-                            GridView(product: product)
+                            GridView(viewModel: GridViewModel(product: product))
                         } else {
                             
                         }
                     }
                     .frame(height: 280)
-                    
                 }
                 .padding(.horizontal, 10)
-                
             }
             .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
         }
