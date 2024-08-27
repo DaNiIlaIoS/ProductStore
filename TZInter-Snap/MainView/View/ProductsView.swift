@@ -16,9 +16,9 @@ struct ProductsView: View {
             VStack(alignment: .leading, spacing: 1) {
                 VStack {
                     Button(action: {
-                        //
+                        viewModel.isGridView.toggle()
                     }, label: {
-                        Image(.cardIcon)
+                        Image(viewModel.isGridView ? .cardIcon : .listIcon)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 10)
                             .background(Color(.systemGray5))
@@ -28,23 +28,27 @@ struct ProductsView: View {
                 .padding(.horizontal, 8)
                 
                 Divider()
-                    .frame(height: 1) // высота линии в 1 пункт
+                    .frame(height: 1)
                     .background(Color.gray)
             }
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 8) {
-                    ForEach(viewModel.products) { product in
-                        if viewModel.isGridView {
-                            GridView(viewModel: GridViewModel(product: product))
-                        } else {
-                            
+            
+            if viewModel.isGridView {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 8) {
+                        ForEach(viewModel.products) { product in
+                            GridCellView(viewModel: CellViewModel(product: product))
                         }
+                        .frame(height: 280)
                     }
-                    .frame(height: 280)
+                    .padding(.horizontal, 10)
                 }
-                .padding(.horizontal, 10)
+                .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
+            } else {
+                List(viewModel.products) { product in
+                        ListCellView(viewModel: CellViewModel(product: product))
+                }
+                .listStyle(.inset)
             }
-            .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 0)
         }
     }
 }

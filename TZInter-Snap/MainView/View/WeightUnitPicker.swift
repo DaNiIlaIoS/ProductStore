@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct WeightUnitPicker: View {
-    @State private var selectedUnit = 1
+    @Binding var selectedUnit: Int
     let segments = ["Шт", "Кг"]
     
     var body: some View {
         Picker("Выбор единицы", selection: $selectedUnit) {
             ForEach(0..<segments.count, id: \.self) { index in
                 Text(segments[index])
+                    .tag(segments[index])
             }
         }
         .pickerStyle(SegmentedPickerStyle())

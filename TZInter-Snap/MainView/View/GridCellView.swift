@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-struct GridView: View {
-    @StateObject var viewModel: GridViewModel
-    @State var isAddedToCard: Bool = false
-    @State private var quantity: Double = 0.1
+struct GridCellView: View {
+    @StateObject var viewModel: CellViewModel
     
     var body: some View {
         GeometryReader(content: { geometry in
@@ -19,10 +17,8 @@ struct GridView: View {
                     Image(viewModel.product.image)
                         .resizable()
                         .scaledToFit()
-                    
                     VStack {
                         HStack(alignment: .top) {
-                            
                             if let tagLabel = viewModel.product.tagLabel {
                                 Text(tagLabel)
                                     .padding(.horizontal, 10)
@@ -70,31 +66,32 @@ struct GridView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: 145)
-//                .frame(height: 150)
+                .background(.white)
                 
                 VStack(alignment: .leading) {
                     Text(viewModel.product.name)
                         .font(.system(size: 12))
                     HStack {
-                        if isAddedToCard {
+                        if viewModel.isAddedToCard {
                             VStack(spacing: 5) {
-                                WeightUnitPicker()
+                                WeightUnitPicker(selectedUnit: $viewModel.selectedUnit)
                                 HStack {
                                     Button(action: {
-                                        isAddedToCard = false
+                                        viewModel.isAddedToCard = false
                                     }, label: {
                                         Image(systemName: "minus")
                                     })
                                     Spacer()
                                     VStack {
-                                        Text("0.1")
-                                            .font(.system(size: 17))
+                                        Text(viewModel.selectedUnit == 0 ? "1 шт" : "0.1 кг")
+                                        
                                         Text("~5.92")
                                             .font(.system(size: 12))
                                     }
+                                    .font(.system(size: 17))
                                     Spacer()
                                     Button(action: {
-                                        isAddedToCard = false
+                                        viewModel.isAddedToCard = false
                                     }, label: {
                                         Image(systemName: "plus")
                                     })
@@ -119,7 +116,7 @@ struct GridView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    isAddedToCard = true
+                                    viewModel.isAddedToCard = true
                                 }, label: {
                                     Image(.cartIcon)
                                         .padding(.horizontal, 17)

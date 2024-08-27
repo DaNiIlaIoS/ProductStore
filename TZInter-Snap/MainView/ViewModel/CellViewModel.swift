@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-final class GridViewModel: ObservableObject {
+final class CellViewModel: ObservableObject {
+    @Published var isAddedToCard: Bool = false
+    @Published var quantity: Double = 0.1
+    @Published var selectedUnit = 1
+    
     let product: Product
     
     init(product: Product) {
