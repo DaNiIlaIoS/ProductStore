@@ -17,7 +17,7 @@ struct ListCellView: View {
                     Image(viewModel.product.image)
                         .resizable()
                         .scaledToFit()
-                    VStack {
+                    VStack(alignment: .leading) {
                         VStack(alignment: .leading) {
                             if let tagLabel = viewModel.product.tagLabel {
                                 Text(tagLabel)
@@ -29,7 +29,7 @@ struct ListCellView: View {
                                     .clipShape(.rect(cornerRadius: 5))
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
                         Spacer()
                         
                         VStack(alignment: .trailing) {
@@ -46,6 +46,7 @@ struct ListCellView: View {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipShape(.rect(cornerRadius: 15))
                 
                 VStack(alignment: .leading) {
                     HStack {
