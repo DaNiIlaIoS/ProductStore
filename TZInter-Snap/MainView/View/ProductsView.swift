@@ -16,7 +16,10 @@ struct ProductsView: View {
             VStack(alignment: .leading, spacing: 1) {
                 VStack {
                     Button(action: {
-                        viewModel.isGridView.toggle()
+                        withAnimation(.easeIn(duration: 0.5)) {
+                            viewModel.isGridView.toggle()
+                        }
+                        
                     }, label: {
                         Image(viewModel.isGridView ? .cardIcon : .listIcon)
                             .padding(.horizontal, 10)
