@@ -55,6 +55,7 @@ struct GridCellView: View {
                             Image(systemName: "star.fill")
                                 .foregroundStyle(.yellow)
                             Text(viewModel.product.grade)
+                                .foregroundStyle(.black)
                             Spacer()
                             if viewModel.product.isOnSale {
                                 Text("25%")
@@ -131,6 +132,7 @@ struct GridCellView: View {
                     
                 }
                 .padding()
+                .foregroundStyle(.black)
             }
             .background(.white)
             .clipShape(.rect(cornerRadius: 20))

@@ -64,6 +64,7 @@ struct ListCellView: View {
                             Text(viewModel.product.name)
                                 .font(.system(size: 12))
                         }
+                        .foregroundStyle(.black)
                         Spacer()
                         VStack(alignment: .trailing, spacing: 10) {
                             Button(action: {
@@ -124,7 +125,7 @@ struct ListCellView: View {
                                         .foregroundStyle(.gray)
                                         .strikethrough(true, color: .gray)
                                 }
-                                
+                                .foregroundStyle(.black)
                                 Spacer()
                                 
                                 Button(action: {
@@ -142,7 +143,10 @@ struct ListCellView: View {
                 }
                 .frame(maxHeight: .infinity)
             }
+            .padding(.horizontal, 10)
             .padding(.vertical, 10)
+            .background(.white)
+            .clipShape(.rect(cornerRadius: 20))
         })
         .frame(height: 180)
     }
